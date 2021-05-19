@@ -11,7 +11,7 @@ namespace MPT_AUDIO_PLAYER
     class Network
     {
         static readonly HttpClient client = new HttpClient();
-        static readonly string URL = "http://192.168.177.39:5000/";
+        static string URL = "http://192.168.19.202:5000/";
         static readonly string success = "success";
 
         public static async Task Register(string login, string password, string email, Action<bool, string> callback)
@@ -68,6 +68,21 @@ namespace MPT_AUDIO_PLAYER
                 res.EnsureSuccessStatusCode();
                 string message = await res.Content.ReadAsStringAsync();
                 callback(message == success, message);
+            }
+            catch
+            {
+                callback(false, "status code not 200");
+            }
+        }
+
+        public static async Task LoadPlaylists(Action<bool, List<Playlist>> callback)
+        {
+            try
+            {
+                HttpResponseMessage res = await client.GetAsync(URL + "/api/upload_track");
+                res.EnsureSuccessStatusCode();
+                string message = await res.Content.ReadAsStringAsync();
+                callback(message == success, );
             }
             catch
             {

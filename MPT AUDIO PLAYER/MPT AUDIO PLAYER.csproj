@@ -61,8 +61,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models.cs" />
     <Compile Include="Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlaylistPanel.xaml.cs">
+      <DependentUpon>PlaylistPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -91,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Player.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlaylistPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
