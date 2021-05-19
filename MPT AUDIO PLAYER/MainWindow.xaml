@@ -6,26 +6,7 @@
         xmlns:local="clr-namespace:MPT_AUDIO_PLAYER"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-                                               
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition  Height="Auto"/>
-        </Grid.RowDefinitions>
-        <MediaElement Name="Player" Source="http://127.0.0.1:5000/mp3" LoadedBehavior="Manual"/>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ToggleButton Name="btn_random" Content="Random" Margin="20 0 20 0"/>
-                <Button Name="btn_back" Content="&lt;-"/>
-                <Button Name="btn_play" Click="btn_play_Click" Content="Play" Margin="20 0 20 0"/>
-                <Button Name="btn_forward" Content="->"/>
-                <ToggleButton Name="btn_repeat" Content="Repeat" Margin="20 0 20 0"/>
-            </StackPanel>
-            <Slider Grid.Row="1" MaxWidth="600"/>
-        </Grid>
-    </Grid>
+    <Window.Background>
+        <SolidColorBrush Color="#333"/>
+    </Window.Background>
 </Window>

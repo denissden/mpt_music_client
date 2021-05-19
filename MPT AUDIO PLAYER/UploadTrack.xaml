@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MPT_AUDIO_PLAYER.UploadTrack"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MPT_AUDIO_PLAYER"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel MaxWidth="250" VerticalAlignment="Center">
+            <Label FontSize="28" Content="Upload a track" HorizontalContentAlignment="Center"/>
+            <Separator/>
+            <Label Content="Track name:"/>
+            <TextBox Name="txt_name" MaxLength="128"/>
+            <Label Content="Select artist:"/>
+            <TextBox Name="txt_artist"/>
+            <Grid Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Name="txt_filename" Visibility="Collapsed" MaxWidth="200"/>
+                <Button Grid.Column="1" Content="Select File" Click="select_file_click"/>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
+                <Button Content="Back" Width="60" Margin="20 0 30 0" Click="back_click_"/>
+                <Button Content="Upload" Width="60" Margin="30 0 20 0" Click="upload_click"/>
+            </StackPanel>
+            <Label Visibility="Hidden" Name="txt_message" Height="30"/>
+        </StackPanel>        
+    </Grid>
+</UserControl>

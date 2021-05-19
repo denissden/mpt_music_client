@@ -20,17 +20,26 @@ namespace MPT_AUDIO_PLAYER
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool IsPlaying = false;
         public MainWindow()
         {
             InitializeComponent();
+            open_login();
         }
 
-        private void btn_play_Click(object sender, RoutedEventArgs e)
+        public void open_register()
         {
-            if (IsPlaying) Player.Pause();
-            else Player.Play();
-            IsPlaying = !IsPlaying;
+            Content = new Register() { back_click = open_login, register_callback = open_login };
         }
+        public void open_login()
+        {
+            Content = new Login() { register_click = open_register, login_callback = open_main_page };
+        }
+
+        public void open_main_page()
+        {
+            Content = new MainPage() { };
+        }
+
+
     }
 }
