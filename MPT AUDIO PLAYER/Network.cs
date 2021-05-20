@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.Json;
 
 namespace MPT_AUDIO_PLAYER
 {
@@ -79,10 +80,11 @@ namespace MPT_AUDIO_PLAYER
         {
             try
             {
-                HttpResponseMessage res = await client.GetAsync(URL + "/api/upload_track");
+                HttpResponseMessage res = await client.GetAsync(URL + "/api/all_playlists");
                 res.EnsureSuccessStatusCode();
                 string message = await res.Content.ReadAsStringAsync();
-                callback(message == success, );
+                List<Playlist> p = JsonConvert.DeserializeObject<List<Playlist>>(message);
+                callback(message == success, message);
             }
             catch
             {
