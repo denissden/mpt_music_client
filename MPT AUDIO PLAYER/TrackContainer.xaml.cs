@@ -20,13 +20,38 @@ namespace MPT_AUDIO_PLAYER
     /// </summary>
     public partial class TrackContainer : UserControl
     {
+        public Track track { get; set; }
         public int index { get; set; }
-        public string name { get; set; }
-        public string artist { get; set; }
-        public DateTime duration { get; set; }
-        public TrackContainer()
+
+        public TrackContainer(Track t, int i)
         {
+            index = i;
+            track = t;
             InitializeComponent();
+            menu_playlists.ItemsSource = new PlaylistPanel().Playlists;
+            DataContext=this;
+        }
+
+        private async void click_add_to_playlist(object sender, RoutedEventArgs e)
+        {
+            MenuItem mi = sender as MenuItem;
+            int tag;
+            if (int.TryParse(mi.Tag.ToString(), out tag))
+                await Network.AddTrackToPlaylist(track.id, tag, add_playlist_callback);  
+        }
+
+        private void add_playlist_callback(bool success, string message)
+        {
+            if (!success)
+            {
+                Error.Show(message);
+            }
+        }
+
+        private void grid_left_mouse_down(object sender, MouseButtonEventArgs e)
+        {
+            if (MainPage.current_main_page != null)
+                MainPage.current_main_page.PlayerControl.MediaPlayer.Source = new Uri(Network.URL + "/track/" + track.id);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace MPT_AUDIO_PLAYER
         public string name { get; set; }
         public int artist_id { get; set; }
         public string artist_name { get; set; }
+        public DateTime duration { get; set; }
     }
 
     public struct Artist

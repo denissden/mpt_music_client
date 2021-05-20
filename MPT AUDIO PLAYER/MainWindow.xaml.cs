@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,7 @@ namespace MPT_AUDIO_PLAYER
             InitializeComponent();
             Error.window = this;
             Debug.window = this;
+            new Thread(new ThreadStart(() => { Config c = Config.Read(); c.Load(); })).Start();
             open_login();
         }
 

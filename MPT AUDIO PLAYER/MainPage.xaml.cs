@@ -18,12 +18,14 @@ namespace MPT_AUDIO_PLAYER
     /// <summary>
     /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class MainPage : UserControl
+    public partial class MainPage : UserControl 
     {
         public Action logout_callback = () => { };
+        public static MainPage current_main_page;
         public MainPage()
         {
             InitializeComponent();
+            current_main_page = this;
             Playlists.main_page = this;
         }
 
@@ -42,11 +44,6 @@ namespace MPT_AUDIO_PLAYER
         public void change_window(object window)
         {
             cnt_main.Content = window;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //PlayerControl.MediaPlayer.Source = new Uri(txt_link.Text);
         }
     }
 }

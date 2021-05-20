@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +20,21 @@ namespace MPT_AUDIO_PLAYER
     /// <summary>
     /// Логика взаимодействия для Playlist.xaml
     /// </summary>
-    public partial class PlaylistPanel : UserControl
+    public partial class PlaylistPanel : UserControl, INotifyPropertyChanged
     {
-        public List<Playlist> Playlists = new List<Playlist>();
+        public event PropertyChangedEventHandler PropertyChanged;
+        public static ObservableCollection<Playlist> _playlists = new ObservableCollection<Playlist>();
+        public ObservableCollection<Playlist> Playlists
+        {
+            get { return _playlists; }
+            set
+            {
+                if (_playlists == value) return;
+                _playlists = value;
+                if (this.PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Playlists"));
+            }
+        }
         public MainPage main_page;
         public PlaylistPanel()
         {
@@ -36,7 +50,7 @@ namespace MPT_AUDIO_PLAYER
 
         private void onload_callback(bool success, List<Playlist> p)
         {
-            Playlists = p;
+            Playlists = new ObservableCollection<Playlist>(p);
             lbx_playlists.ItemsSource = Playlists;
         }
 
@@ -63,14 +77,24 @@ namespace MPT_AUDIO_PLAYER
             }
             else
             {
-               // Error.Show("Error creating playlist");
+               Error.Show("Error creating playlist");
             }
         }
 
         private void lbl_playlist_mouse_left(object sender, MouseButtonEventArgs e)
         {
-            if (lbx_playlists.SelectedIndex != -1)
-            main_page.change_window(new TextBox() { Text = Playlists[lbx_playlists.SelectedIndex].name });
+           if (lbx_playlists.SelectedIndex != -1)
+                main_page.change_window(new PlaylistPage(Playlists[lbx_playlists.SelectedIndex].id));
+        }
+
+        private void click_search(object sender, RoutedEventArgs e)
+        {
+                main_page.change_window(new TrackSearch());
+        }
+
+        private void click_upload(object sender, RoutedEventArgs e)
+        {
+            main_page.change_window(new UploadTrack());
         }
     }
 }

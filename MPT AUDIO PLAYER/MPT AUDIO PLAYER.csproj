@@ -83,6 +83,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Config.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Login.xaml.cs">
@@ -106,6 +108,12 @@
     </Compile>
     <Compile Include="TrackContainer.xaml.cs">
       <DependentUpon>TrackContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TrackList.xaml.cs">
+      <DependentUpon>TrackList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TrackSearch.xaml.cs">
+      <DependentUpon>TrackSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="UploadTrack.xaml.cs">
       <DependentUpon>UploadTrack.xaml</DependentUpon>
@@ -147,6 +155,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TrackContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrackList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrackSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,7 +60,5 @@ namespace MPT_AUDIO_PLAYER
             IsDraggingSlider = false;
             MediaPlayer.Position = TimeSpan.FromSeconds(MediaSlider.Value);
         }
-
-
     }
 }

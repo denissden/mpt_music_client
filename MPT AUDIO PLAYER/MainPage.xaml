@@ -20,7 +20,6 @@
             </Grid.ColumnDefinitions>
             <local:PlaylistPanel x:Name="Playlists"/>
             <ContentControl Grid.Column="1" Name="cnt_main"/>
-            <Button Content="Play" Grid.Column="2" Click="Button_Click"/>
         </Grid>
         <local:Player Grid.Row="1" x:Name="PlayerControl" />
     </Grid>

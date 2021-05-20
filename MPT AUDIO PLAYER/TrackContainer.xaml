@@ -6,17 +6,28 @@
              xmlns:local="clr-namespace:MPT_AUDIO_PLAYER"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="600">
-    <Grid>
+    <Grid MouseLeftButtonDown="grid_left_mouse_down">
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Add to playlist" Name="menu_playlists">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <MenuItem Header="{Binding name}" Tag="{Binding id}" Click="click_add_to_playlist"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>   
+                </MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding index}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <TextBlock Text="{Binding name}" />
-            <TextBlock Text="{Binding artist}" Foreground="#333"/>
+        <TextBlock Text="{Binding index}" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#333"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0">
+            <TextBlock  Name="txt_name" Text="{Binding track.name}" />
+            <TextBlock Text="{Binding track.artist_name}" Foreground="#333"/>
         </StackPanel>
-        <TextBlock Grid.Column="2" Text="{Binding duration}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Column="2" Text="{Binding track.duration, StringFormat=mm:ss}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>

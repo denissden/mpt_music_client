@@ -22,13 +22,12 @@ namespace MPT_AUDIO_PLAYER
     {
         public string playlist_name { get; set; }
         public int playlist_id;
-        List<Track> tracks_list;
         public PlaylistPage(int id)
         {
             InitializeComponent();
             this.DataContext = this;
-            tracks.ItemsSource = tracks_list;
             playlist_id = id;
+            load_tracks();
         }
 
         public async void load_tracks()
@@ -40,7 +39,8 @@ namespace MPT_AUDIO_PLAYER
         {
             if (p != null)
             {
-                tracks_list = p.Value.tracks;
+                txt_playlist_name.Text = p.Value.name;
+                tracks.set_tracks(p.Value.tracks);
             }
         }
     }
