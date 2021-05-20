@@ -23,23 +23,39 @@ namespace MPT_AUDIO_PLAYER
         public MainWindow()
         {
             InitializeComponent();
+            Error.window = this;
+            Debug.window = this;
             open_login();
         }
 
         public void open_register()
         {
-            Content = new Register() { back_click = open_login, register_callback = open_login };
+            cnt_main.Content = new Register() { back_click = open_login, register_callback = open_login };
         }
         public void open_login()
         {
-            Content = new Login() { register_click = open_register, login_callback = open_main_page };
+            cnt_main.Content = new Login() { register_click = open_register, login_callback = open_main_page };
         }
 
         public void open_main_page()
         {
-            Content = new MainPage() { };
+            cnt_main.Content = new MainPage() { };
         }
 
+        public void show_error(string message)
+        {
+            txt_error_message.Text = message;
+            error_message.Visibility = Visibility.Visible;
+        }
 
+        public void show_debug(string message)
+        {
+            txt_debug_message.Text = message;
+        }
+
+        private void close_error(object sender, RoutedEventArgs e)
+        {
+            error_message.Visibility = Visibility.Collapsed;
+        }
     }
 }

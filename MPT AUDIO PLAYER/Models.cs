@@ -8,22 +8,24 @@ namespace MPT_AUDIO_PLAYER
 {
     public struct Track
     {
-        public int id;
-        public string name;
-        public int artist_id;
+        public int id { get; set; }
+        public string name { get; set; }
+        public int artist_id { get; set; }
+        public string artist_name { get; set; }
     }
 
     public struct Artist
     {
-        public int id;
-        public string name;
+        public int id { get; set; }
+        public string name { get; set; }
     }
 
     public struct Playlist
     {
-        public int id;
-        public string name;
-        public List<int> content;
-        public int owner_id;
+        public int id { get; set; }
+        public string name { get; set; }
+        public List<int> content { get; set; }
+        public int owner_id { get; set; }
+        public List<Track> tracks { get; set; }
     }
 }

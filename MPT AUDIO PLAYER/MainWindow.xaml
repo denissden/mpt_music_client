@@ -6,9 +6,23 @@
         xmlns:local="clr-namespace:MPT_AUDIO_PLAYER"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!--
-    <Window.Background>
-        <SolidColorBrush Color="#333"/>
-    </Window.Background>
-    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ContentControl Name="cnt_main"/>
+        <Grid Grid.Row="1" Name="error_message" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="txt_error_message" Background="#f22" Foreground="#400" TextAlignment="Center"/>
+            <Button Grid.Column="1" Content="X" Background="#f22" Foreground="#fff" Click="close_error"/>
+        </Grid>
+        <Grid Grid.Row="2" Name="debug_message" Visibility="Visible" MaxHeight="200">
+            <TextBox Name="txt_debug_message"/>
+        </Grid>
+    </Grid>
 </Window>

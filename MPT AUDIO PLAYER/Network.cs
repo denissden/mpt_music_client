@@ -83,12 +83,74 @@ namespace MPT_AUDIO_PLAYER
                 HttpResponseMessage res = await client.GetAsync(URL + "/api/all_playlists");
                 res.EnsureSuccessStatusCode();
                 string message = await res.Content.ReadAsStringAsync();
-                List<Playlist> p = JsonConvert.DeserializeObject<List<Playlist>>(message);
-                callback(message == success, message);
+                List<Playlist> p = JsonSerializer.Deserialize<List<Playlist>>(message);
+                Debug.Show(message);
+                callback(true, p);
             }
-            catch
+            catch (Exception e)
             {
-                callback(false, "status code not 200");
+                Error.Show(e.StackTrace);
+                callback(false, null);
+            }
+        }
+
+        public static async Task AddPlaylist(string name, Action<bool, Playlist?> callback)
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("name", name),
+            });
+            try
+            {
+                HttpResponseMessage res = await client.PostAsync(URL + "/api/create_playlist", content);
+                res.EnsureSuccessStatusCode();
+                string message = await res.Content.ReadAsStringAsync();
+                Playlist p = JsonSerializer.Deserialize<Playlist>(message);
+                callback(message == success, p);
+            }
+            catch (Exception e)
+            {
+                Error.Show(e.StackTrace);
+                callback(false, null);
+            }
+        }
+
+        public static async Task LoadPlaylist(int id, Action<bool, Playlist?> callback)
+        {
+            try
+            {
+                HttpResponseMessage res = await client.GetAsync(URL + $"/api/playlist/{id}");
+                res.EnsureSuccessStatusCode();
+                string message = await res.Content.ReadAsStringAsync();
+                Playlist p = JsonSerializer.Deserialize<Playlist>(message);
+                callback(true, p);
+            }
+            catch (Exception e)
+            {
+                Error.Show(e.StackTrace);
+                callback(false, null);
+            }
+        }
+
+        public static async Task AddTrackToPlaylist(int track_id, int playlist_id, Action<bool, Playlist?> callback)
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("track_id", track_id.ToString()),
+                new KeyValuePair<string, string>("playlist_id", playlist_id.ToString()),
+            });
+            try
+            {
+                HttpResponseMessage res = await client.PostAsync(URL + "/api/add_to_playlist", content);
+                res.EnsureSuccessStatusCode();
+                string message = await res.Content.ReadAsStringAsync();
+                Playlist p = JsonSerializer.Deserialize<Playlist>(message);
+                callback(message == success, p);
+            }
+            catch (Exception e)
+            {
+                Error.Show(e.StackTrace);
+                callback(false, null);
             }
         }
     }

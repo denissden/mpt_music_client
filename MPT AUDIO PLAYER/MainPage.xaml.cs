@@ -24,6 +24,7 @@ namespace MPT_AUDIO_PLAYER
         public MainPage()
         {
             InitializeComponent();
+            Playlists.main_page = this;
         }
 
         private void logout_click(object sender, RoutedEventArgs e)
@@ -38,9 +39,14 @@ namespace MPT_AUDIO_PLAYER
             if (res) register_callback();*/
         }
 
+        public void change_window(object window)
+        {
+            cnt_main.Content = window;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PlayerControl.MediaPlayer.Source = new Uri(txt_link.Text);
+            //PlayerControl.MediaPlayer.Source = new Uri(txt_link.Text);
         }
     }
 }

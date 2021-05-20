@@ -18,9 +18,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txt_link"/>
+            <local:PlaylistPanel x:Name="Playlists"/>
+            <ContentControl Grid.Column="1" Name="cnt_main"/>
             <Button Content="Play" Grid.Column="2" Click="Button_Click"/>
-            <local:UploadTrack Grid.Column="1"/>
         </Grid>
         <local:Player Grid.Row="1" x:Name="PlayerControl" />
     </Grid>

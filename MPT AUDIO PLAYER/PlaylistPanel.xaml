@@ -7,7 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="150">
     <Grid>
-        <ListBox Name="lbx_playlists">
-        </ListBox>    
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView Name="lbx_playlists" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding name}" MouseLeftButtonDown="lbl_playlist_mouse_left"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1" Name="grd_add_playlist">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition MinWidth="20"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txt_playlist_name" Visibility="Hidden" MinWidth="120"/>
+            <Button Grid.Column="1" Name="btn_add_playlist" Content="+" Click="click_add_playlist" MinWidth="10"/>
+        </Grid>
     </Grid>
 </UserControl>
