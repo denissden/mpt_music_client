@@ -45,7 +45,16 @@ namespace MPT_AUDIO_PLAYER
                 string name = Path.GetFileName(dia.FileName);
                 txt_filename.Content = name;
                 if (txt_name.Text.Length == 0)
-                    txt_name.Text = name.Replace(".mp3", "");
+                {
+                    int dash = name.IndexOf("-");
+                    if (dash != -1)
+                    {
+                        txt_artist.Text = name.Substring(0, dash).Trim();
+                        int a = name.Length;
+                        txt_name.Text = name.Substring(dash + 1, name.Length - dash - 1).Trim().Replace(".mp3", "");
+                    }
+
+                }
             }
         }
         private async void upload_click(object sender, RoutedEventArgs e)

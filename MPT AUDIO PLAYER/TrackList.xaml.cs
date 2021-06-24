@@ -36,18 +36,22 @@ namespace MPT_AUDIO_PLAYER
                     this.PropertyChanged(this, new PropertyChangedEventArgs("tracks"));
             }
         }
+        public Playlist playlist;
+
         public TrackList()
         {
             InitializeComponent();
             //items_tracks.ItemsSource = tracks;
             DataContext = this;
         }
-        public void set_tracks(List<Track> responce_tracks)
+        public void set_tracks(Playlist responce_playlist)
         {
             tracks.Clear();
+            playlist = responce_playlist;
+            var responce_tracks = responce_playlist.tracks;
             if (responce_tracks != null && responce_tracks.Count != 0)
                 for (int i = 0; i < responce_tracks.Count; i++)
-                    tracks.Add(new TrackContainer(responce_tracks[i], i + 1));
+                    tracks.Add(new TrackContainer(responce_tracks[i], i + 1, this));
             else Error.Show("No tracks!");
         }
     }

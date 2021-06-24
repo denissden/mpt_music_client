@@ -11,6 +11,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ContentControl Name="cnt_main"/>
         <Grid Grid.Row="1" Name="error_message" Visibility="Collapsed">
@@ -21,7 +22,15 @@
             <TextBlock Name="txt_error_message" Background="#f22" Foreground="#400" TextAlignment="Center"/>
             <Button Grid.Column="1" Content="X" Background="#f22" Foreground="#fff" Click="close_error"/>
         </Grid>
-        <Grid Grid.Row="2" Name="debug_message" Visibility="Visible" MaxHeight="200">
+        <Grid Grid.Row="1" Name="success_message" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="txt_success_message" Background="#2f2" Foreground="#040" TextAlignment="Center"/>
+            <Button Grid.Column="1" Content="X" Background="#2f2" Foreground="#fff" Click="close_success"/>
+        </Grid>
+        <Grid Grid.Row="2" Name="debug_message" Visibility="Collapsed" MaxHeight="200"> <!-- DEBUG -->
             <TextBox Name="txt_debug_message"/>
         </Grid>
     </Grid>

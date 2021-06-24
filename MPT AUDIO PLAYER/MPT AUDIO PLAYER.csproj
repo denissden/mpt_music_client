@@ -103,9 +103,13 @@
     <Compile Include="PlaylistPanel.xaml.cs">
       <DependentUpon>PlaylistPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PremiumPage.xaml.cs">
+      <DependentUpon>PremiumPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Success.cs" />
     <Compile Include="TrackContainer.xaml.cs">
       <DependentUpon>TrackContainer.xaml</DependentUpon>
     </Compile>
@@ -147,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PlaylistPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PremiumPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

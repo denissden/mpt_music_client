@@ -27,13 +27,14 @@ namespace MPT_AUDIO_PLAYER
 
         private async void search_click(object sender, RoutedEventArgs e)
         {
-            await Network.SearchTrack(txt_search.Text, search_callback);
+            if (txt_search.Text != "")
+                await Network.SearchTrack(txt_search.Text, search_callback);
         }
 
         private void search_callback(bool success, List<Track> responce_tracks)
         {
             if (success)
-                tracks.set_tracks(responce_tracks);
+                tracks.set_tracks(new Playlist() { tracks = responce_tracks });
         }
     }
 }

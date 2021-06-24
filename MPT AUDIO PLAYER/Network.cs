@@ -12,7 +12,7 @@ namespace MPT_AUDIO_PLAYER
     class Network
     {
         static readonly HttpClient client = new HttpClient();
-        public static string URL = "";
+        public static string URL = "192.168.62.39:5000";
         static readonly string success = "success";
 
         public static async Task Register(string login, string password, string email, Action<bool, string> callback)
@@ -174,5 +174,43 @@ namespace MPT_AUDIO_PLAYER
                 callback(false, null);
             }
         }
+
+        public static async Task PremiumStatus(Action<bool, string> callback)
+        {
+            try
+            {
+                HttpResponseMessage res = await client.GetAsync(URL + "/api/premium");
+                res.EnsureSuccessStatusCode();
+                string message = await res.Content.ReadAsStringAsync();
+                callback(message == success, message);
+                return;
+            }
+            catch
+            {
+                callback(false, "status code not 200");
+            }
+        }
+
+        public static async Task TogglePremium(bool state, Action<bool, string> callback)
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("state", state.ToString()),
+            });
+            try
+            {
+                HttpResponseMessage res = await client.PostAsync(URL + "/api/premium", content);
+                res.EnsureSuccessStatusCode();
+                string message = await res.Content.ReadAsStringAsync();
+                callback(message == success, message);
+                return;
+            }
+            catch
+            {
+                callback(false, "status code not 200");
+            }
+        }
+
+
     }
 }

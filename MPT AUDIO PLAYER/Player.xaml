@@ -13,18 +13,27 @@
         </Grid.RowDefinitions>
         <MediaElement Name="MediaPlayer" Source="http://192.168.19.202:5000/music/1" LoadedBehavior="Manual"/>
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ToggleButton Name="btn_random" Content="Random" Margin="20 0 20 0"/>
-                <Button Name="btn_back" Content="&lt;-"/>
-                <Button Name="btn_play" Click="btn_play_click" Content="Play" Margin="20 0 20 0"/>
-                <Button Name="btn_forward" Content="->"/>
-                <ToggleButton Name="btn_repeat" Content="Repeat" Margin="20 0 20 0"/>
-            </StackPanel>
-            <Slider Name="MediaSlider" Grid.Row="1" MaxWidth="600" Thumb.DragStarted="slider_drag_start" Thumb.DragCompleted="slider_drag_end"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MaxWidth="300"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Label Name="lbl_track"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ToggleButton Name="btn_random" Click="btn_random_click" Content="Random" Margin="20 0 20 0"/>
+                    <Button Name="btn_back" Click="btn_back_click" Content="&lt;-"/>
+                    <Button Name="btn_play" Click="btn_play_click" Content="Play" Margin="20 0 20 0"/>
+                    <Button Name="btn_forward" Click="btn_forward_click" Content="->"/>
+                    <ToggleButton Name="btn_repeat" Content="Repeat" Margin="20 0 20 0"/>
+                </StackPanel>
+                <Slider Name="MediaSlider" Grid.Row="1" MaxWidth="600" Thumb.DragStarted="slider_drag_start" Thumb.DragCompleted="slider_drag_end"/>
+            </Grid>
+            <Slider Grid.Column="2" TickPlacement="BottomRight" TickFrequency="10" Maximum="100" Value="50" Thumb.DragCompleted="volume_drag_end" Name="VolumeSlider"/>
         </Grid>
     </Grid>
 </UserControl>

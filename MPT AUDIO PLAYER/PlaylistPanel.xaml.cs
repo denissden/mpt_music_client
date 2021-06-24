@@ -64,6 +64,7 @@ namespace MPT_AUDIO_PLAYER
             {
                 btn_add_playlist.IsEnabled = false;
                 await Network.AddPlaylist(txt_playlist_name.Text, add_playlist_callback);
+                load_playlists();
             }
         }
 
@@ -95,6 +96,11 @@ namespace MPT_AUDIO_PLAYER
         private void click_upload(object sender, RoutedEventArgs e)
         {
             main_page.change_window(new UploadTrack());
+        }        
+        
+        private void click_premium(object sender, RoutedEventArgs e)
+        {
+            main_page.change_window(new PremiumPage());
         }
     }
 }

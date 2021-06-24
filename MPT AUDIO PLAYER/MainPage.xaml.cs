@@ -27,6 +27,7 @@ namespace MPT_AUDIO_PLAYER
             InitializeComponent();
             current_main_page = this;
             Playlists.main_page = this;
+            CurrentUser.load_premium();
         }
 
         private void logout_click(object sender, RoutedEventArgs e)

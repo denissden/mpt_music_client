@@ -20,6 +20,9 @@
             </Grid.ColumnDefinitions>
             <local:PlaylistPanel x:Name="Playlists"/>
             <ContentControl Grid.Column="1" Name="cnt_main"/>
+            <Label Grid.Column="2" Name="img_ad">
+                <TextBlock FontFamily="Comic Sans" Text="РЕКЛАМА НАЖМИ НА МЕНЯ" TextWrapping="Wrap" FontSize="60" MaxWidth="200"/>
+            </Label>
         </Grid>
         <local:Player Grid.Row="1" x:Name="PlayerControl" />
     </Grid>

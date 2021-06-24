@@ -26,6 +26,7 @@ namespace MPT_AUDIO_PLAYER
             InitializeComponent();
             Error.window = this;
             Debug.window = this;
+            Success.window = this;
             new Thread(new ThreadStart(() => { Config c = Config.Read(); c.Load(); })).Start();
             open_login();
         }
@@ -50,14 +51,25 @@ namespace MPT_AUDIO_PLAYER
             error_message.Visibility = Visibility.Visible;
         }
 
+        private void close_error(object sender, RoutedEventArgs e)
+        {
+            error_message.Visibility = Visibility.Collapsed;
+        }
+
         public void show_debug(string message)
         {
             txt_debug_message.Text = message;
         }
 
-        private void close_error(object sender, RoutedEventArgs e)
+        public void show_success(string message)
         {
-            error_message.Visibility = Visibility.Collapsed;
+            txt_success_message.Text = message;
+            success_message.Visibility = Visibility.Visible;
         }
+        private void close_success(object sender, RoutedEventArgs e)
+        {
+            success_message.Visibility = Visibility.Collapsed;
+        }
+
     }
 }

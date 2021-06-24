@@ -8,20 +8,30 @@ using System.Threading.Tasks;
 
 namespace MPT_AUDIO_PLAYER
 {
-    class CurrentUser //: INotifyPropertyChanged
-    {   
+    public class CurrentUser
+    {
+        private static bool _premium = false;
+        public static bool premium { 
+            get { return _premium; } 
+            set { 
+                _premium = value;
+                if (MainPage.current_main_page != null)
+                {
+                    MainPage.current_main_page.img_ad.Visibility = value ?
+                        System.Windows.Visibility.Collapsed :
+                        System.Windows.Visibility.Visible;
+                }
+            } }
 
-       /* public static ObservableCollection<Playlist> _playlists = new ObservableCollection<Playlist>();
-
-        public ObservableCollection<Playlist> playlists
+        public async static void load_premium()
         {
-            get { return _playlists; }
-            set
-            {
-                if (_playlists == value) return;
-                _playlists = value;
-                this.PropertyChanged(this, new PropertyChangedEventArgs("tracks"));
-            }
-        }*/
+            await Network.PremiumStatus(onload_callback);
+        }
+
+        private static void onload_callback(bool success, string res)
+        {
+            premium = res == "True";
+            Debug.Show(premium.ToString());
+        }
     }
 }

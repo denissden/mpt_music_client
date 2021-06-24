@@ -40,7 +40,7 @@ namespace MPT_AUDIO_PLAYER
             if (p != null)
             {
                 txt_playlist_name.Text = p.Value.name;
-                tracks.set_tracks(p.Value.tracks);
+                tracks.set_tracks(p.Value);
             }
         }
     }
